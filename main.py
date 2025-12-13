@@ -1,16 +1,31 @@
 import os
-from services import get_Hugg, get_gemini_key
-from database import UserDB, get_user, add_to_db, get_db
-from schema import UserAuth, AnalyzeText
+from app.services import get_Hugg, get_gemini_key
+from app.database import UserDB, get_user, add_to_db, get_db
+from app.schema import UserAuth, AnalyzeText
 from fastapi import FastAPI, Depends, HTTPException, status
 from sqlalchemy.orm import sessionmaker, Session 
 from passlib.context import CryptContext
 from datetime import datetime, timezone, timedelta
 from jose import jwt, JWTError
-from security import get_hash_password, verify_password, create_access_token
+from app.security import get_hash_password, verify_password, create_access_token
+from fastapi.middleware.cors import CORSMiddleware
 
 # --- ENDPOINTS
 MyApp = FastAPI()
+
+# --- Liaison avec frontend
+origins = [
+    "http://localhost:3000",    # next.js
+    "http: 127.0.0.1:3000"
+]
+
+MyApp.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],        # POST, GET, OPTIONS, etc.
+    allow_headers=["*"],
+)
 
 @MyApp.get('/home')
 def get_home():
@@ -45,7 +60,7 @@ def sign_in(user : UserAuth, db : Session = Depends(get_db)):
             detail="Mot de passe incorrect"
         )
     access_token=create_access_token(data={"sub" : db_user.username})
-    return {"acces token" : access_token, "type": "bearer"}
+    return {"access token" : access_token, "type": "bearer"}
     
 
 @MyApp.post('/AnalyzeText')

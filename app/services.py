@@ -12,7 +12,7 @@ def get_Hugg(text_input : str):
         "Authorization": f"Bearer {os.environ['HF_TOKEN_env']}",
     }
     # text_input = "Hi, I recently bought a device from your company but it is not working as advertised and I would like to get reimbursed!"
-    text_input="Briefly, how AI works"
+    # text_input="Briefly, how AI works"
     payload = {
         "inputs": text_input,
         "parameters": {"candidate_labels": ["refund", "legal", "faq"]},

@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  # -----------------------------------------------------------------
+  # 1. Base de données (PostgreSQL)
+  # -----------------------------------------------------------------
+  db:
+    image: postgres:15
+    container_name: postgres_container
+    restart: always
+    environment:
+      POSTGRES_USER: DB_USER_env
+      POSTGRES_PASSWORD: DB_PASSWORD_env
+      POSTGRES_DB: DB_NAME_env
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # -----------------------------------------------------------------
+  # 2. Backend (FastAPI)
+  # -----------------------------------------------------------------
+  backend:
+    build: ./OrchestrationIA Fullstack-backend
+    container_name: fastapi_container
+    restart: always
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      # --- Config DB (database.py) ---
+      DB_USER_env: DB_USER_env
+      DB_PASSWORD_env: DB_PASSWORD_env
+      DB_ADDR_env: db            # Nom du service Docker ci-contre
+      DB_PORT_env: DB_PORT_env
+      DB_NAME_env: DB_NAME_env
+      # URL complète pour SQLAlchemy
+      DB_URL_env: DB_URL_env
+      
+      # --- Sécurité & JWT (security.py) ---
+      SECRET_KEY_env: SECRET_KEY_env
+      ALGO_env: ALGO_env
+      
+      # --- APIs IA (services.py) ---
+      HF_TOKEN_env: HF_TOKEN_env
+      Gemini_Key_env: HF_TOKEN_env
+      API_URL_env: API_URL_env
+
+  # -----------------------------------------------------------------
+  # 3. Frontend (Next.js)
+  # -----------------------------------------------------------------
+  frontend:
+    build: ../OrchestrationIA Fullstack-frontend
+    container_name: nextjs_container
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    environment:
+      NEXT_PUBLIC_API_URL: "http://localhost:8000"
+
+# Persistance des données de la base
+volumes:
+  postgres_data:
