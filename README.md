@@ -10,7 +10,7 @@
 
 Dans le cadre de la modernisation d'une agence de **media monitoring**, ce projet vise à automatiser l'analyse de flux d'articles de presse.
 
-**Hybrid-Analyzer** est une plateforme d'orchestration IA qui remplace le traitement manuel coûteux par un pipeline automatisé. Ce backend agit comme un chef d'orchestre intelligent capable de :
+**Hybrid AI Orchestrator API** est une plateforme d'orchestration IA qui remplace le traitement manuel coûteux par un pipeline automatisé. Ce backend agit comme un chef d'orchestre intelligent capable de :
 1.  **Classifier** un texte sans entraînement préalable (Zero-Shot Classification via Hugging Face).
 2.  **Synthétiser** et analyser la tonalité du contenu en utilisant la classification comme contexte (via Google Gemini).
 
