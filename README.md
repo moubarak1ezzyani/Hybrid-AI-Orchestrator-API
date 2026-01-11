@@ -10,7 +10,7 @@
 
 ## 🔗 Lien vers l'Interface (Frontend)
 Ce backend est le moteur d'intelligence qui alimente le tableau de bord utilisateur :
-👉 **[Accéder au Hybrid-Analysis-Dashboard](https://github.com/votre-username/Hybrid-Analysis-Dashboard)**
+👉 **[Accéder au Hybrid-Analysis-Dashboard](https://github.com/moubarak1ezzyani/Hybrid-Analysis-Dashboard.git)**
 
 ## 📖 Contexte du Projet
 
