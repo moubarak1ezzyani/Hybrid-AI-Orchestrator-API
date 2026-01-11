@@ -6,6 +6,12 @@
 ![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker)
 ![Coverage](https://img.shields.io/badge/Tests-Pytest%20%26%20Mocks-green)
 
+> **API d'orchestration intelligente chaînant la Classification Zero-Shot et la Synthèse Contextuelle.**
+
+## 🔗 Lien vers l'Interface (Frontend)
+Ce backend est le moteur d'intelligence qui alimente le tableau de bord utilisateur :
+👉 **[Accéder au Hybrid-Analysis-Dashboard](https://github.com/votre-username/Hybrid-Analysis-Dashboard)**
+
 ## 📖 Contexte du Projet
 
 Dans le cadre de la modernisation d'une agence de **media monitoring**, ce projet vise à automatiser l'analyse de flux d'articles de presse.
