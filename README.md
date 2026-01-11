@@ -1,4 +1,4 @@
-# 🧠 Hybrid-Analyzer | Backend API
+# 🧠 Hybrid AI Orchestrator API
 
 ![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python)
 ![FastAPI](https://img.shields.io/badge/FastAPI-High%20Performance-009688?logo=fastapi)
