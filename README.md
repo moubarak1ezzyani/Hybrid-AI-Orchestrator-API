@@ -1,4 +1,4 @@
-# 🧠 Hybrid-Analyzer | Backend API
+# 🧠 Hybrid AI Orchestrator API
 
 ![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python)
 ![FastAPI](https://img.shields.io/badge/FastAPI-High%20Performance-009688?logo=fastapi)
@@ -6,65 +6,72 @@
 ![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker)
 ![Coverage](https://img.shields.io/badge/Tests-Pytest%20%26%20Mocks-green)
 
-## 📖 Contexte du Projet
+> **Intelligent orchestration API chaining Zero-Shot Classification and Contextual Synthesis.**
 
-Dans le cadre de la modernisation d'une agence de **media monitoring**, ce projet vise à automatiser l'analyse de flux d'articles de presse.
+## 🔗 Frontend Interface Link
 
-**Hybrid-Analyzer** est une plateforme d'orchestration IA qui remplace le traitement manuel coûteux par un pipeline automatisé. Ce backend agit comme un chef d'orchestre intelligent capable de :
-1.  **Classifier** un texte sans entraînement préalable (Zero-Shot Classification via Hugging Face).
-2.  **Synthétiser** et analyser la tonalité du contenu en utilisant la classification comme contexte (via Google Gemini).
+This backend is the intelligence engine that powers the user dashboard:
+👉 **[Access the Hybrid-Analysis-Dashboard](https://github.com/moubarak1ezzyani/Hybrid-Analysis-Dashboard.git)**
+
+## 📖 Project Context
+
+As part of the modernization of a **media monitoring** agency, this project aims to automate the analysis of news article feeds.
+
+The **Hybrid AI Orchestrator API** is an AI orchestration platform that replaces costly manual processing with an automated pipeline. This backend acts as an intelligent orchestrator capable of:
+1.  **Classifying** text without prior training (Zero-Shot Classification via Hugging Face).
+2.  **Synthesizing** and analyzing the tone of the content by using the classification as context (via Google Gemini).
 
 ## 🏗 Architecture & Workflow
 
-Le backend expose une API RESTful sécurisée qui gère le chaînage des appels IA.
+The backend exposes a secure RESTful API that manages the chaining of AI calls.
 
-### 📂 Structure du Projet
+### 📂 Project Structure
 
 ```text
 OrchestrationIA Fullstack-backend/
-├── app/                  # Cœur de l'application (Logique métier, Sécurité, DB)
-├── docs/                 # Documentation technique et ressources
-├── script/               # Scripts utilitaires pour le projet
-├── venv/                 # Environnement virtuel Python (local)
-├── .env                  # Variables d'environnement (Sensible - non versionné)
-├── .gitignore            # Configuration des exclusions Git
-├── docker-compose.yml    # Orchestration des conteneurs (App + DB)
-├── dockerfile            # Configuration de l'image Docker du backend
-├── main.py               # Point d'entrée principal de l'API FastAPI
-├── notes_backend.md      # Journal de bord et notes de développement
-├── README.md             # Documentation générale du dépôt
-└── requirements.txt      # Liste des bibliothèques et dépendances Python
+├── app/                  # Application Core (Business logic, Security, DB)
+├── docs/                 # Technical documentation and resources
+├── script/               # Utility scripts for the project
+├── venv/                 # Python virtual environment (local)
+├── .env                  # Environment variables (Sensitive - ignored by Git)
+├── .gitignore            # Git exclusion configuration
+├── docker-compose.yml    # Container orchestration (App + DB)
+├── dockerfile            # Docker image configuration for the backend
+├── main.py               # Main entry point for the FastAPI application
+├── notes_backend.md      # Development logs and notes
+├── README.md             # General repository documentation
+└── requirements.txt      # List of Python libraries and dependencies
 ```
 
-## 🛠️ Stack Technique
+## 🛠️ Technical Stack
 
-  * **Framework API :** FastAPI (Python) pour sa gestion native de l'asynchronisme et sa rapidité.
-  * **Base de Données :** PostgreSQL via SQLAlchemy (ORM).
-  * **Authentification :** Implémentation complète JWT (JSON Web Tokens) avec hashage Bcrypt (`passlib`).
-  * **Services IA :**
-      * **Classification :** API Inference Hugging Face (Modèle `facebook/bart-large-mnli`).
-      * **Génération :** Google Generative AI (Gemini Flash).
-  * **Qualité & Tests :** Pytest avec stratégie de Mocking pour isoler les appels API externes.
-  * **DevOps :** Docker & Docker Compose.
+* **API Framework:** FastAPI (Python) for its native async support and high performance.
+* **Database:** PostgreSQL via SQLAlchemy (ORM).
+* **Authentication:** Full JWT (JSON Web Tokens) implementation with Bcrypt hashing (`passlib`).
+* **AI Services:**
+    * **Classification:** Hugging Face Inference API (`facebook/bart-large-mnli` model).
+    * **Generation:** Google Generative AI (Gemini Flash).
+* **Quality & Testing:** Pytest with a Mocking strategy to isolate external API calls.
+* **DevOps:** Docker & Docker Compose.
 
-## ⚙️ Installation et Configuration
+## ⚙️ Installation and Setup
 
-### Prérequis
+### Prerequisites
 
-  * Python 3.10+
-  * PostgreSQL
-  * Docker (optionnel)
+* Python 3.10+
+* PostgreSQL
+* Docker (optional)
 
-### 1\. Cloner le projet
+### 1. Clone the project
 
 ```bash
 git clone [https://github.com/votre-user/Hybrid-Analyzer-Backend.git](https://github.com/votre-user/Hybrid-Analyzer-Backend.git)
 cd Hybrid-Analyzer-Backend
 ```
 
-### 2\. Variables d'Environnement (.env)
+### 2. Environment Variables (.env)
 
-Créez un fichier `.env` à la racine. **Indispensable pour la sécurité et les appels API.**
+Create a `.env` file at the root. **Essential for security and API calls.**
 
 ```ini
 # --- Database ---
@@ -75,11 +82,11 @@ DB_PORT_env=5432
 DB_NAME_env=orchestrator_db
 DB_URL_env=postgresql://postgres:admin@localhost/orchestrator_db
 
-# --- Sécurité (JWT) ---
-SECRET_KEY_env=votre_cle_super_secrete_openssl
+# --- Security (JWT) ---
+SECRET_KEY_env=your_super_secret_openssl_key
 ALGO_env=HS256
 
-# --- API Keys IA ---
+# --- AI API Keys ---
 # Hugging Face (Write Token)
 HF_TOKEN_env=hf_xxxxxxxxxxxxxxxxxxxx
 API_URL_env=[https://api-inference.huggingface.co/models/facebook/bart-large-mnli](https://api-inference.huggingface.co/models/facebook/bart-large-mnli)
@@ -88,7 +95,7 @@ API_URL_env=[https://api-inference.huggingface.co/models/facebook/bart-large-mnl
 Gemini_Key_env=AIzaSyxxxxxxxxxxxxxxxxxxxx
 ```
 
-### 3\. Installation des dépendances
+### 3. Install dependencies
 
 ```bash
 python -m venv venv
@@ -100,59 +107,58 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 4\. Lancement
+### 4. Run the application
 
 ```bash
 uvicorn main:MyApp --reload
 ```
 
-L'API est accessible sur `http://localhost:8000`.
-Documentation Swagger : `http://localhost:8000/docs`.
+The API will be available at `http://localhost:8000`.
+Swagger Documentation: `http://localhost:8000/docs`.
 
-## 🐳 Lancement via Docker
+## 🐳 Running with Docker
 
-Pour lancer le backend et la base de données PostgreSQL simultanément :
+To launch both the backend and the PostgreSQL database simultaneously:
 
 ```bash
 docker-compose up --build
 ```
 
-## 🔌 Documentation API
+## 🔌 API Documentation
 
-### Authentification
+### Authentication
 
-  * **POST** `/Register`
-      * Création de compte. Hashage automatique du mot de passe.
-      * *Body :* `{"username": "admin", "password": "secure123"}`
-  * **POST** `/Login`
-      * Récupération du Token d'accès.
-      * *Body :* `{"username": "admin", "password": "secure123"}`
-      * *Response :* `{"access token": "eyJhbGci...", "type": "bearer"}`
+* **POST** `/Register`
+    * Account creation. Automatic password hashing.
+    * *Body:* `{"username": "admin", "password": "secure123"}`
+* **POST** `/Login`
+    * Retrieve Access Token.
+    * *Body:* `{"username": "admin", "password": "secure123"}`
+    * *Response:* `{"access token": "eyJhbGci...", "type": "bearer"}`
 
-### Orchestration IA (Protégé)
+### AI Orchestration (Protected)
 
-  * **POST** `/AnalyzeText`
-      * *Header :* `Authorization: Bearer <token>`
-      * *Body :* `{"text_input": "Le marché boursier a chuté suite..."}`
-      * *Processus :*
-        1.  Envoi à **Hugging Face** pour catégorisation.
-        2.  Injection de la catégorie reçue dans le prompt **Gemini**.
-        3.  Génération du résumé et analyse de sentiment.
-      * *Response Example :*
-        ```json
-        {
-          "original text": "...",
-          "result_hugg": { "labels": ["Finance"], "scores": [0.98] },
-          "result gemini": "Résumé : Suite à l'annonce... \nTonalité : Négative"
-        }
-        ```
+* **POST** `/AnalyzeText`
+    * *Header:* `Authorization: Bearer <token>`
+    * *Body:* `{"text_input": "The stock market crashed following..."}`
+    * *Process:*
+      1.  Sent to **Hugging Face** for categorization.
+      2.  Injection of the received category into the **Gemini** prompt.
+      3.  Generation of the summary and sentiment analysis.
+    * *Response Example:*
+      ```json
+      {
+        "original text": "...",
+        "result_hugg": { "labels": ["Finance"], "scores": [0.98] },
+        "result gemini": "Summary: Following the announcement... \nTone: Negative"
+      }
+      ```
 
-## 🧪 Tests Unitaires
+## 🧪 Unit Tests
 
-Le projet inclut des tests unitaires validant la chaîne de traitement et mockant les API externes (pour ne pas consommer de crédits IA lors des tests).
+The project includes unit tests validating the processing chain and mocking external APIs (so no AI credits are consumed during testing).
 
 ```bash
-# Lancer les tests
+# Run tests
 pytest tests/
 ```
-
